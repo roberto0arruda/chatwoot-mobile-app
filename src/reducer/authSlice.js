@@ -17,6 +17,7 @@ export const actions = {
       const { 'access-token': access_token, uid, client } = response.headers;
       const { name, id, account_id, accounts, pubsub_token, avatar_url, available_name, role } =
         data;
+
       return {
         user: {
           name,
@@ -37,7 +38,6 @@ export const actions = {
       };
     } catch (error) {
       const { response } = error;
-
       if (response && response.status === 401) {
         const { errors } = response.data;
         const hasAuthErrorMsg =
@@ -69,6 +69,8 @@ export const actions = {
         const { data } = response;
         return data;
       } catch (error) {
+        console.log('error', error);
+
         const { response } = error;
 
         if (response && response.status === 401) {
